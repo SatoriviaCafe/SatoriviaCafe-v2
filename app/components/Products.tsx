@@ -19,14 +19,14 @@ export default function Products() {
           arrows
           autoplay
           autoplaySpeed={4000}
-          className="[&_.slick-dots]:bottom-[-80px] [&_.slick-dots_li_button]:w-3 [&_.slick-dots_li_button]:h-3 [&_.slick-dots_li_button]:rounded-full [&_.slick-dots_li.slick-active_button]:bg-black [&_.slick-prev]:left-[-40px] [&_.slick-next]:right-[-40px] [&_.slick-prev]:z-10 [&_.slick-next]:z-10 [&_.slick-prev]:text-black [&_.slick-next]:text-black"
+          className="[&_.slick-dots]:bottom-[-50px] [&_.slick-dots_li_button]:w-3 [&_.slick-dots_li_button]:h-3 [&_.slick-dots_li_button]:rounded-full [&_.slick-dots_li.slick-active_button]:bg-black [&_.slick-prev]:left-[-40px] [&_.slick-next]:right-[-40px] [&_.slick-prev]:z-10 [&_.slick-next]:z-10 [&_.slick-prev]:text-black [&_.slick-next]:text-black"
         >
           {Array.from({ length: Math.ceil(beans.length / 3) }, (_, index) => (
             <div key={index}>
               <div className="grid grid-cols-3 gap-8 px-4 pb-8">
                 {beans.slice(index * 3, (index + 1) * 3).map((item) => (
                   <div key={item.id} className="flex flex-col text-center px-2">
-                    <Link href={`/beans/${item.id}`}>
+                    <Link href={`/products/beans/${item.id}`}>
                       <div className="relative overflow-hidden rounded-lg group">
                         <Image
                           src={item.image}
@@ -69,7 +69,7 @@ export default function Products() {
             <div key={item.id}>
               <div className="px-4 pb-8">
                 <div className="flex flex-col text-center px-2 h-full">
-                  <Link href={`/beans/${item.id}`}>
+                  <Link href={`/products/beans/${item.id}`}>
                     <div className="relative overflow-hidden rounded-lg group">
                       <Image
                         src={item.image}
@@ -90,7 +90,7 @@ export default function Products() {
                       rel="noopener noreferrer"
                       className="inline-block rounded-full bg-white border-2 border-white px-8 py-3 text-black font-semibold shadow-lg transition-all duration-300 hover:bg-transparent hover:text-white hover:shadow-xl transform hover:scale-105"
                     >
-                      立即购买
+                      购买
                     </a>
                   </div>
                 </div>

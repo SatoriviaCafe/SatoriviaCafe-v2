@@ -5,8 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, use } from "react";
 import { beans } from "@/data/beans";
-import BackgroundWrapper from "../../components/BackgroundWrapper";
-import Navbar from "../../components/Navbar";
+import BackgroundWrapper from "@/app/components/BackgroundWrapper";
+import Navbar from "@/app/components/Navbar";
 
 export default function BeanDetailPage({
   params,
