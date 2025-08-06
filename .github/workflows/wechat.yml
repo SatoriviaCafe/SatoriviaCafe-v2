@@ -1,0 +1,24 @@
+name: Send Github commits with WeChat Notification
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send push info to WeChat via Server酱
+        run: |
+          # 設定提交時間，如果不存在就用現在時間
+          ts="${{ github.event.head_commit.timestamp }}"
+          if [ -z "$ts" ]; then ts="$(date -u +'%Y-%m-%dT%H:%M:%SZ')"; fi
+
+          # 發送通知
+          curl -sS "https://sctapi.ftqq.com/SCT291745TfV1iQJhwrMfhd0czH0yqJdbU.send" \
+            --data-urlencode "title=${{ github.repository }} 有新的提交" \
+            --data-urlencode "desp=提交信息: ${{ github.event.head_commit.message }}  
+            提交人: ${{ github.actor }}  
+            提交時間: ${ts}  
+            提交連結: https://github.com/${{ github.repository }}/commit/${{ github.sha }}"
