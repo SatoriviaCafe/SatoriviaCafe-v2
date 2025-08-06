@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 
 import "antd/dist/reset.css";
 import "./globals.css";
-import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
 
 export const metadata: Metadata = {
   title: "官网 | 星辰咖啡 Satorivia Cafe",
@@ -16,10 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${GeistSans.variable} ${GeistMono.variable} antialiased`}
-    >
+    <html>
       <body>{children}</body>
     </html>
   );
