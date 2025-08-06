@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import "antd/dist/reset.css";
+// import "antd/dist/reset.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -15,7 +15,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html>
+    <html lang="zh-cn">
+      <head></head>
       <body>{children}</body>
     </html>
   );

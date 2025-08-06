@@ -55,7 +55,7 @@ export default {
     		},
     		fontFamily: {
     			sans: [
-    				'MiSans"',
+    				'MiSans',
     				'sans-serif'
     			]
     		},
