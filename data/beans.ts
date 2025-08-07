@@ -2,11 +2,11 @@
 export const beans = [
    {
     id: 'blue-mountain-no1',
-    name: '牙買加克里夫頓莊園 藍山壹號',
+    name: '牙买加克里夫顿庄园 蓝山一号',
     flavor: '红茶 · 焦糖 · 坚果',
-    origin: '牙買加克里夫頓莊園', 
+    origin: '牙买加克里夫顿庄园', 
     altitude: '1900米',
-    variety: '鐵皮卡',
+    variety: '铁皮卡',
     image: '/beans/Asteroids/blue-mountain-no1.jpg',
     taobaoUrl: 'https://item.taobao.com/item.htm?id=920945893780&sku_properties=13956141%3A29164057%3B295251758%3A3328836&spm=a21xtw.29178619.0.0',
     radar: '/beans/Asteroids/radar/radar-blue-mountain-no1.png',
