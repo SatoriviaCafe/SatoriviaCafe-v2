@@ -47,8 +47,8 @@ export default function Navbar() {
   }, []);
 
   const productCategories = [
-    { name: "單品咖啡豆", href: "/products/beans" },
-    { name: "濾掛咖啡", href: "/products/drip-coffee" },
+    { name: "單品咖啡豆（敬請期待）", href: "/products/beans" },
+    { name: "濾掛咖啡（敬請期待）", href: "/products/drip-coffee" },
   ];
 
   const navItems = [

@@ -14,7 +14,7 @@ function scrollToId(id: string) {
 // 导航链接数据
 const footerNav = {
   products: [
-    { title: "单品咖啡豆", href: "/products/beans" },
+    { title: "单品咖啡豆（敬請期待）", href: "/products/beans" },
     { title: "滤挂咖啡（敬請期待）", href: "/products/drip" },
   ],
   about: [
