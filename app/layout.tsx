@@ -16,7 +16,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-cn">
-      <head></head>
       <body>{children}</body>
     </html>
   );
