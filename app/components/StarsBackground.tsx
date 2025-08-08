@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
-import * as THREE from 'three';
+import * as THREE from "three";
 
 export default function StarsBackground() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -10,7 +10,6 @@ export default function StarsBackground() {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // 初始化 scene, camera, renderer
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       75,
@@ -22,7 +21,6 @@ export default function StarsBackground() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     containerRef.current.appendChild(renderer.domElement);
 
-    // 建立星星
     const starGeometry = new THREE.BufferGeometry();
     const starCount = 10000;
     const starPositions = new Float32Array(starCount * 3);
@@ -30,21 +28,20 @@ export default function StarsBackground() {
       starPositions[i] = (Math.random() - 0.5) * 2000;
     }
     starGeometry.setAttribute(
-      'position',
+      "position",
       new THREE.BufferAttribute(starPositions, 3)
     );
 
     const starMaterial = new THREE.PointsMaterial({
       color: 0xffffff,
       size: 0.5,
-      transparent: true
+      transparent: true,
     });
 
     const stars = new THREE.Points(starGeometry, starMaterial);
     scene.add(stars);
     camera.position.z = 800;
 
-    // 動畫
     const animate = () => {
       requestAnimationFrame(animate);
 
@@ -64,21 +61,19 @@ export default function StarsBackground() {
 
     animate();
 
-    // 窗口尺寸改變處理
     const handleResize = () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
     };
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
-    // 清理
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
       renderer.dispose();
       containerRef.current?.removeChild(renderer.domElement);
     };
   }, []);
 
-  return <div ref={containerRef} className='fixed inset-0 z-[-1]' />;
+  return <div ref={containerRef} className="fixed inset-0 z-[-1]" />;
 }

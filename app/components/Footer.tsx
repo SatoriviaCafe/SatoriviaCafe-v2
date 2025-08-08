@@ -1,17 +1,14 @@
-// components/Footer.tsx
 "use client";
 
 import React from "react";
 import Link from "next/link";
 import { Heart, Mail, MapPin, Star } from "lucide-react";
 
-// 平滑滚动到锚点
 function scrollToId(id: string) {
   const el = document.querySelector(id);
   el?.scrollIntoView({ behavior: "smooth" });
 }
 
-// 导航链接数据
 const footerNav = {
   products: [
     { title: "单品咖啡豆（敬請期待）", href: "/products/beans" },
@@ -30,7 +27,6 @@ const footerNav = {
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-black to-slate-800 text-gray-300">
-      {/* 星空背景装饰 */}
       <div className="absolute inset-0 opacity-30">
         {[
           "left-10 top-10",
@@ -64,12 +60,10 @@ export default function Footer() {
         ))}
       </div>
 
-      {/* 渐变覆盖层 */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
 
       <div className="relative px-6 pb-10 pt-20 text-white md:px-20">
         <div className="mx-auto grid max-w-7xl items-start gap-12 md:grid-cols-5">
-          {/* 左侧品牌区 */}
           <div className="md:col-span-2">
             <div className="mb-6 flex items-center gap-3">
               <Link href="/">
@@ -104,7 +98,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* 导航链接群 */}
           <div className="md:col-span-3 grid grid-cols-3 gap-8">
             {[
               { heading: "产品系列", items: footerNav.products },
@@ -151,7 +144,6 @@ export default function Footer() {
                       );
                     }
 
-                    // 如果未来有外部链接也能兼容
                     return (
                       <li key={href}>
                         <a
@@ -173,7 +165,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* 自媒体关注区（保持你原本的那块，不需改动） */}
         <div className="mx-auto mt-16 max-w-7xl">
           <h3 className="mb-2 text-lg font-semibold text-white">
             关注我们的星空时光
@@ -244,7 +235,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* 下方版权区 */}
         <div className="mx-auto mt-16 max-w-7xl">
           <div className="mb-8 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
           <div className="flex flex-col items-center justify-between gap-6 text-sm text-gray-400 md:flex-row">

@@ -24,18 +24,14 @@ export default function BeanDetailPage({
 
   return (
     <div className="min-h-screen relative">
-      {/* 星空背景 */}
       <BackgroundWrapper />
 
-      {/* 主要内容 */}
       <div className="relative z-10">
-        {/* 主页导航栏 */}
         <Navbar />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-24">
           <div className="bg-black/20 backdrop-blur-md rounded-xl shadow-2xl border border-white/10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-6">
-              {/* 左侧：产品图片 */}
               <div className="space-y-4">
                 <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
                   <Image
@@ -47,7 +43,6 @@ export default function BeanDetailPage({
                   />
                 </div>
 
-                {/* 风味雷达图 */}
                 {bean.radar && (
                   <div className="bg-black/30 backdrop-blur-sm rounded-lg p-4 border border-white/20">
                     <h3 className="text-sm font-medium text-white mb-2">
@@ -66,9 +61,7 @@ export default function BeanDetailPage({
                 )}
               </div>
 
-              {/* 右侧：产品信息和购买选项 */}
               <div className="space-y-6">
-                {/* 产品基本信息 */}
                 <div>
                   <h1 className="text-2xl font-bold text-white mb-2">
                     {bean.name}
@@ -81,7 +74,6 @@ export default function BeanDetailPage({
                   </div>
                 </div>
 
-                {/* 风味描述 */}
                 <div className="bg-amber-500/20 border border-amber-400/30 rounded-lg p-4 backdrop-blur-sm">
                   <h3 className="text-sm font-medium text-amber-200 mb-1">
                     风味特点
@@ -89,7 +81,6 @@ export default function BeanDetailPage({
                   <p className="text-amber-100">{bean.flavor}</p>
                 </div>
 
-                {/* 产品规格 - 使用动态数据 */}
                 <div className="grid grid-cols-2 gap-4 p-4 bg-black/30 backdrop-blur-sm rounded-lg border border-white/10">
                   <div>
                     <span className="text-sm text-gray-400">海拔高度</span>
@@ -111,7 +102,6 @@ export default function BeanDetailPage({
                   </div>
                 </div>
 
-                {/* 新增：产品规格详情 */}
                 {(bean.specification || bean.package || bean.additives) && (
                   <div className="grid grid-cols-1 gap-3 p-4 bg-black/30 backdrop-blur-sm rounded-lg border border-white/10">
                     {bean.specification && (
@@ -141,7 +131,6 @@ export default function BeanDetailPage({
                   </div>
                 )}
 
-                {/* 产品描述 */}
                 <div className="border-t border-white/10 pt-6">
                   <div className="bg-amber-500/20 border border-amber-400/30 rounded-lg p-4 mb-4 backdrop-blur-sm">
                     <h3 className="text-sm font-medium text-amber-200 mb-2">
@@ -206,7 +195,6 @@ export default function BeanDetailPage({
               </div>
             </div>
 
-            {/* 产品详情标签页 */}
             <div className="border-t border-white/10">
               <div className="flex border-b border-white/10">
                 <button
@@ -255,7 +243,6 @@ export default function BeanDetailPage({
                       {bean.additives && <li>{bean.additives}</li>}
                     </ul>
 
-                    {/* 新增：详细规格信息 */}
                     <div className="mt-6 space-y-4">
                       <h4 className="font-medium mb-3 text-white">
                         产品规格：
@@ -312,7 +299,6 @@ export default function BeanDetailPage({
                       冲煮建议
                     </h3>
 
-                    {/* 使用动态数据的冲煮参数 */}
                     <div className="mb-6 bg-amber-500/20 border border-amber-400/30 rounded-lg p-4 backdrop-blur-sm">
                       <h4 className="font-medium text-amber-200 mb-3">
                         推荐参数
@@ -355,7 +341,6 @@ export default function BeanDetailPage({
                       </div>
                     </div>
 
-                    {/* 推荐冲煮方法 */}
                     {bean.brewingmethod && (
                       <div className="mb-6">
                         <h4 className="font-medium text-white mb-3">

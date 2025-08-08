@@ -18,10 +18,8 @@ function scrollToId(id: string) {
 
 function navigateToPage(href: string) {
   if (href.startsWith("/")) {
-    // 導向其他頁面
     window.location.href = href;
   } else {
-    // 滾動到當前頁面的section
     scrollToId(href);
   }
 }
@@ -38,7 +36,6 @@ export default function Navbar() {
     };
     window.addEventListener("scroll", handleScroll);
 
-    // Close dropdown when clicking outside
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Element;
       if (!target.closest(".navigation-dropdown")) {
@@ -58,13 +55,13 @@ export default function Navbar() {
       name: "单品咖啡豆（敬请期待）",
       href: "/products/beans",
       description: "精选优质咖啡豆，来自世界各地",
-      image: "/logo.png", // 你可以替換成實際的圖片路徑
+      image: "/logo.png",
     },
     {
       name: "滤挂咖啡（敬请期待）",
       href: "/products/drip-coffee",
       description: "方便的滤挂式咖啡，随时享受香醇",
-      image: "/drip-coffee.jpg", // 你可以替換成實際的圖片路徑
+      image: "/logo.png",
     },
   ];
 
@@ -121,7 +118,6 @@ export default function Navbar() {
               </div>
             </a>
 
-            {/* Desktop Navigation */}
             <div className="ml-auto hidden items-center space-x-1 pr-4 md:flex">
               <nav className="flex items-center space-x-1">
                 {navItems.map((item) => {
@@ -135,7 +131,6 @@ export default function Navbar() {
                       : "text-gray-300 hover:bg-white/5 hover:text-white"
                   }`;
 
-                  // Handle external links
                   if (isExternal) {
                     return (
                       <a
@@ -153,7 +148,6 @@ export default function Navbar() {
                     );
                   }
 
-                  // Handle dropdown items
                   if (item.hasDropdown && item.dropdownItems) {
                     return (
                       <div
@@ -182,7 +176,6 @@ export default function Navbar() {
                           ></div>
                         </button>
 
-                        {/* Custom Navigation Menu Dropdown */}
                         <div
                           className={`absolute left-1/2 top-full z-50 mt-2 w-[600px] -translate-x-1/2 transform transition-all duration-200 ${
                             isDropdownOpen
@@ -192,10 +185,9 @@ export default function Navbar() {
                         >
                           <div className="rounded-lg border border-white/10 bg-black/95 shadow-2xl backdrop-blur-xl overflow-hidden">
                             <div className="flex">
-                              {/* Left side - Brand/Product showcase */}
                               <button
                                 onClick={() => {
-                                  handleDropdownItemClick("products"); // 或者你想要的其他頁面
+                                  handleDropdownItemClick("products");
                                 }}
                                 className="w-1/3 bg-gradient-to-br from-amber-900/20 to-amber-800/10 p-6 flex flex-col justify-center items-center hover:from-amber-900/30 hover:to-amber-800/20 transition-all duration-300 group/showcase"
                               >
@@ -214,7 +206,6 @@ export default function Navbar() {
                                 </p>
                               </button>
 
-                              {/* Right side - Navigation items */}
                               <div className="w-2/3 p-4">
                                 <div className="grid gap-3">
                                   {item.dropdownItems.map((dropdownItem) => (
@@ -236,7 +227,6 @@ export default function Navbar() {
                                         />
                                       </div> */}
 
-                                      {/* Product info */}
                                       <div className="flex-1 space-y-1">
                                         <div className="text-sm font-medium leading-none text-gray-300 group-hover:text-amber-400">
                                           {dropdownItem.name}
@@ -249,7 +239,6 @@ export default function Navbar() {
                                   ))}
                                 </div>
 
-                                {/* Call to action */}
                                 <div className="mt-4 pt-4 border-t border-white/10">
                                   <a
                                     href="/products"
@@ -269,7 +258,6 @@ export default function Navbar() {
                     );
                   }
 
-                  // Handle regular navigation items
                   return (
                     <button
                       key={item.name}
@@ -311,7 +299,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile menu */}
         <div
           className={`overflow-hidden transition-all duration-300 md:hidden ${isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
         >

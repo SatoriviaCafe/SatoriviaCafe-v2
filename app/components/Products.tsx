@@ -12,7 +12,6 @@ export default function Products() {
         小行星系列
       </h2>
 
-      {/* 桌面版輪播 - 每次顯示3個 */}
       <div className="hidden md:block">
         <Carousel
           dots
@@ -56,7 +55,6 @@ export default function Products() {
         </Carousel>
       </div>
 
-      {/* 手機版輪播 - 每次顯示1個 */}
       <div className="block md:hidden">
         <Carousel
           dots
