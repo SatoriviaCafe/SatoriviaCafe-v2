@@ -12,16 +12,15 @@
 
 body {
     font-family: 'MiSans', sans-serif;
-    overflow-y: scroll;           /* 保留滾動功能，但準備隱藏 scrollbar */
-    scrollbar-width: none;        /* Firefox 隱藏 */
+    overflow-y: scroll;  /* 保留滾動功能，但準備隱藏 scrollbar */
+    scrollbar-width: none;  /* Firefox 隱藏 */
     -ms-overflow-style: none;
     overflow-x: hidden;
 }
 
-/* Webkit-based browsers (Chrome, Safari) */
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
-  display: none;                /* Chrome/Safari 隱藏 */
+  display: none;  /* Chrome/Safari 隱藏 */
 }
 
 @layer base {
