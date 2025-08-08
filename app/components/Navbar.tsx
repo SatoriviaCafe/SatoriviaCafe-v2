@@ -252,7 +252,7 @@ export default function Navbar() {
                                 {/* Call to action */}
                                 <div className="mt-4 pt-4 border-t border-white/10">
                                   <a
-                                    href="#products"
+                                    href="/products"
                                     className="flex items-center justify-center space-x-2 w-full py-2 px-4 bg-amber-600/20 hover:bg-amber-600/30 rounded-md transition-colors text-amber-400 hover:text-amber-300"
                                   >
                                     <span className="text-sm font-medium">
