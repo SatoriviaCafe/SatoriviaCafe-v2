@@ -26,7 +26,7 @@ export default function Products() {
               <div className="grid grid-cols-3 gap-8 px-4 pb-8">
                 {beans.slice(index * 3, (index + 1) * 3).map((item) => (
                   <div key={item.id} className="flex flex-col text-center px-2">
-                    <Link href={`/products/beans/${item.id}`}>
+                    <Link href={`/products/beans/${item.series}/${item.id}`}>
                       <div className="relative overflow-hidden rounded-lg group">
                         <Image
                           src={item.image}
@@ -69,7 +69,7 @@ export default function Products() {
             <div key={item.id}>
               <div className="px-4 pb-8">
                 <div className="flex flex-col text-center px-2 h-full">
-                  <Link href={`/products/beans/${item.id}`}>
+                  <Link href={`/products/beans/${item.series}/${item.id}`}>
                     <div className="relative overflow-hidden rounded-lg group">
                       <Image
                         src={item.image}

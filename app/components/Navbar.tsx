@@ -193,7 +193,12 @@ export default function Navbar() {
                           <div className="rounded-lg border border-white/10 bg-black/95 shadow-2xl backdrop-blur-xl overflow-hidden">
                             <div className="flex">
                               {/* Left side - Brand/Product showcase */}
-                              <div className="w-1/3 bg-gradient-to-br from-amber-900/20 to-amber-800/10 p-6 flex flex-col justify-center items-center">
+                              <button
+                                onClick={() => {
+                                  handleDropdownItemClick("products"); // 或者你想要的其他頁面
+                                }}
+                                className="w-1/3 bg-gradient-to-br from-amber-900/20 to-amber-800/10 p-6 flex flex-col justify-center items-center hover:from-amber-900/30 hover:to-amber-800/20 transition-all duration-300 group/showcase"
+                              >
                                 <div className="w-full h-32 bg-gradient-to-r from-amber-400/10 to-amber-600/10 rounded-lg flex items-center justify-center mb-4">
                                   <img
                                     src="/logo.png"
@@ -207,7 +212,7 @@ export default function Navbar() {
                                 <p className="text-gray-300 text-sm text-center">
                                   小行星系列
                                 </p>
-                              </div>
+                              </button>
 
                               {/* Right side - Navigation items */}
                               <div className="w-2/3 p-4">

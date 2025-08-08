@@ -1,6 +1,7 @@
 // data/coffeebeans.ts
 export const beans = [
    {
+    series: 'asteroids',
     id: 'blue-mountain-no1',
     name: '牙买加克里夫顿庄园 蓝山一号',
     flavor: '红茶 · 焦糖 · 坚果',
@@ -21,6 +22,7 @@ export const beans = [
     additives: "无添加、无调味、100%原豆原香", //添加物
   }, 
   {
+    series: 'asteroids',
     id: 'blue-flamenco',
     name: '篮韵弗朗明戈',
     flavor: '茉莉玉兰 · 蜜柑 · 木瓜 · 椰果',
@@ -41,6 +43,7 @@ export const beans = [
     additives: "100% 咖啡豆，无添加", //添加物
   }, 
   {
+    series: 'asteroids',
     id: 'soe-geisha-g1',
     name: 'SOE 埃塞格拉纳瑰夏 G1',
     flavor: '玫瑰 黑莓 牛轧糖',
