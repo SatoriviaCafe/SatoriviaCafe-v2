@@ -1,4 +1,3 @@
-// data/coffeebeans.ts
 export const beans = [
    {
     series: 'asteroids',

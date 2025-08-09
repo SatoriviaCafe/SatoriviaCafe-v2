@@ -3,11 +3,25 @@
 import React from "react";
 import Link from "next/link";
 import { Heart, Mail, MapPin, Star } from "lucide-react";
+import { motion, type Variants } from "framer-motion";
 
 function scrollToId(id: string) {
   const el = document.querySelector(id);
   el?.scrollIntoView({ behavior: "smooth" });
 }
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
+
+const containerStagger: Variants = {
+  hidden: { opacity: 1 }, // 保持佈局不跳動
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12, delayChildren: 0.08 },
+  },
+};
 
 const footerNav = {
   products: [
@@ -27,7 +41,14 @@ const footerNav = {
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-black to-slate-800 text-gray-300">
-      <div className="absolute inset-0 opacity-30">
+      {/* 星空背景（保留你的星點，僅加淡入） */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 0.3 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }}
+        className="absolute inset-0"
+      >
         {[
           "left-10 top-10",
           "right-20 top-20 delay-300",
@@ -58,13 +79,21 @@ export default function Footer() {
             className={`absolute h-1 w-1 animate-pulse rounded-full bg-white ${pos}`}
           />
         ))}
-      </div>
+      </motion.div>
 
       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
 
-      <div className="relative px-6 pb-10 pt-20 text-white md:px-20">
+      {/* 整體容器：僅加進場與 stagger，不變動內容 */}
+      <motion.div
+        variants={containerStagger}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="relative px-6 pb-10 pt-20 text-white md:px-20"
+      >
         <div className="mx-auto grid max-w-7xl items-start gap-12 md:grid-cols-5">
-          <div className="md:col-span-2">
+          {/* 左側品牌介紹（原樣，僅套動畫） */}
+          <motion.div variants={fadeUp} className="md:col-span-2">
             <div className="mb-6 flex items-center gap-3">
               <Link href="/">
                 <img
@@ -96,15 +125,16 @@ export default function Footer() {
                 手工烘焙 · 真诚呈现
               </p>
             </div>
-          </div>
+          </motion.div>
 
+          {/* 導航三欄（原樣，僅套動畫） */}
           <div className="md:col-span-3 grid grid-cols-3 gap-8">
             {[
               { heading: "产品系列", items: footerNav.products },
               { heading: "品牌与理念", items: footerNav.about },
               { heading: "客户服务", items: footerNav.support },
             ].map(({ heading, items }) => (
-              <div key={heading}>
+              <motion.div key={heading} variants={fadeUp}>
                 <h4 className="relative mb-6 text-sm font-bold uppercase tracking-widest text-gray-400">
                   {heading}
                   <span className="absolute bottom-0 left-0 block h-0.5 w-8 rounded-full bg-gradient-to-r from-amber-400 to-amber-600" />
@@ -160,16 +190,26 @@ export default function Footer() {
                     );
                   })}
                 </ul>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
 
-        <div className="mx-auto mt-16 max-w-7xl">
-          <h3 className="mb-2 text-lg font-semibold text-white">
+        {/* 社群連結區（原樣，僅加容器與每個 item 的動畫） */}
+        <motion.div
+          variants={containerStagger}
+          className="mx-auto mt-16 max-w-7xl"
+        >
+          <motion.h3
+            variants={fadeUp}
+            className="mb-2 text-lg font-semibold text-white"
+          >
             关注我们的星空时光
-          </h3>
-          <p className="mb-6 text-sm text-gray-400">分享每一刻的咖啡美好</p>
+          </motion.h3>
+          <motion.p variants={fadeUp} className="mb-6 text-sm text-gray-400">
+            分享每一刻的咖啡美好
+          </motion.p>
+
           <div className="flex flex-wrap gap-4">
             {[
               {
@@ -209,8 +249,9 @@ export default function Footer() {
                 followers: "店铺",
               },
             ].map((social, i) => (
-              <a
+              <motion.a
                 key={i}
+                variants={fadeUp}
                 href="#"
                 className="group relative flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-white/20 hover:bg-white/10"
               >
@@ -230,12 +271,13 @@ export default function Footer() {
                   <p className="text-xs text-gray-400">{social.followers}</p>
                 </div>
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/0 to-white/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              </a>
+              </motion.a>
             ))}
           </div>
-        </div>
+        </motion.div>
 
-        <div className="mx-auto mt-16 max-w-7xl">
+        {/* 版權區（原樣，僅套動畫） */}
+        <motion.div variants={fadeUp} className="mx-auto mt-16 max-w-7xl">
           <div className="mb-8 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
           <div className="flex flex-col items-center justify-between gap-6 text-sm text-gray-400 md:flex-row">
             <p>© 2025 Satorivia Cafe 星辰咖啡 All rights reserved.</p>
@@ -245,8 +287,8 @@ export default function Footer() {
               <span>by Satorivia</span>
             </div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </footer>
   );
 }
