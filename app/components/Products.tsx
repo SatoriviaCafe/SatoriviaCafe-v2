@@ -26,7 +26,10 @@ const cardVariants: Variants = {
 
 export default function Products() {
   return (
-    <section id="products" className="px-6 py-20 text-black">
+    <section
+      id="products"
+      className="px-6 py-20 text-black scroll-mt-28 md:scroll-mt-32"
+    >
       <motion.h2
         variants={containerStagger}
         initial="hidden"

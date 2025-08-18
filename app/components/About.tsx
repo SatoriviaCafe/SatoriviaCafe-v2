@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function About() {
   return (
-    <section id="about" className="px-6 py-20">
+    <section id="about" className="px-6 py-20 scroll-mt-28 md:scroll-mt-32">
       <motion.h2
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
