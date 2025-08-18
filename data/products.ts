@@ -1,5 +1,6 @@
-export const beans = [
+export const products = [
    {
+    productsid: 'beans',
     series: 'asteroids',
     id: 'blue-mountain-no1',
     name: '牙买加克里夫顿庄园 蓝山一号',
@@ -21,6 +22,7 @@ export const beans = [
     additives: "无添加、无调味、100%原豆原香", //添加物
   }, 
   {
+    productsid: 'beans',
     series: 'asteroids',
     id: 'blue-flamenco',
     name: '篮韵弗朗明戈',
@@ -42,6 +44,7 @@ export const beans = [
     additives: "100% 咖啡豆，无添加", //添加物
   }, 
   {
+    productsid: 'beans',
     series: 'asteroids',
     id: 'soe-geisha-g1',
     name: 'SOE 埃塞格拉纳瑰夏 G1',

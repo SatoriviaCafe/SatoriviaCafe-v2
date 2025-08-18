@@ -1,10 +1,9 @@
 "use client";
 
-import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, use } from "react";
-import { beans } from "@/data/beans";
+import { use, useState } from "react"; // ← 加入 use()
+import { products } from "@/data/products";
 import BackgroundWrapper from "@/app/components/BackgroundWrapper";
 import Navbar from "@/app/components/Navbar";
 import { motion, type Variants } from "framer-motion";
@@ -37,24 +36,37 @@ const rightSlide: Variants = {
   show: { opacity: 1, x: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
+type PageParams = {
+  productsid: string;
+  series: string;
+  id: string;
+};
+
 export default function BeanDetailPage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<PageParams>; // ← 改成 Promise 型別
 }) {
-  const { id } = use(params);
-  const [activeTab, setActiveTab] = useState("details");
+  // ← 在 Client Component 以 use() 解包 params
+  const { id /*, productsid, series*/ } = use(params);
 
-  const bean = beans.find((b) => b.id === id);
+  // 依你的資料結構需要，也可以一起比對 productsid / series
+  // const item = products.find(b => b.id === id && b.series === series && b.productsid === productsid);
+  const item = products.find((b: { id: string }) => b.id === id);
 
-  if (!bean) {
-    notFound();
+  if (!item) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-white">
+        找不到商品
+      </div>
+    );
   }
+
+  const [activeTab, setActiveTab] = useState<"details" | "brewing">("details");
 
   return (
     <div className="min-h-screen relative">
       <BackgroundWrapper />
-
       <div className="relative z-10">
         <Navbar />
 
@@ -83,15 +95,15 @@ export default function BeanDetailPage({
                   className="aspect-square bg-gray-100 rounded-lg overflow-hidden"
                 >
                   <Image
-                    src={bean.image}
-                    alt={bean.name}
+                    src={item.image}
+                    alt={item.name}
                     width={500}
                     height={500}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   />
                 </motion.div>
 
-                {bean.radar && (
+                {item.radar && (
                   <motion.div
                     variants={fadeUp}
                     className="bg-black/30 backdrop-blur-sm rounded-lg p-4 border border-white/20"
@@ -101,7 +113,7 @@ export default function BeanDetailPage({
                     </h3>
                     <div className="aspect-square bg-black/20 rounded overflow-hidden">
                       <Image
-                        src={bean.radar}
+                        src={item.radar}
                         alt="风味雷达图"
                         width={300}
                         height={300}
@@ -116,13 +128,13 @@ export default function BeanDetailPage({
               <motion.div variants={rightSlide} className="space-y-6">
                 <motion.div variants={fadeUp}>
                   <h1 className="text-2xl font-bold text-white mb-2">
-                    {bean.name}
+                    {item.name}
                   </h1>
                   <div className="flex items-center space-x-4 text-sm text-gray-300">
                     <span className="bg-orange-500/80 text-white px-2 py-1 rounded backdrop-blur-sm">
                       精品咖啡
                     </span>
-                    <span>产地：{bean.origin}</span>
+                    <span>产地：{item.origin}</span>
                   </div>
                 </motion.div>
 
@@ -133,7 +145,7 @@ export default function BeanDetailPage({
                   <h3 className="text-sm font-medium text-amber-200 mb-1">
                     风味特点
                   </h3>
-                  <p className="text-amber-100">{bean.flavor}</p>
+                  <p className="text-amber-100">{item.flavor}</p>
                 </motion.div>
 
                 <motion.div
@@ -142,59 +154,59 @@ export default function BeanDetailPage({
                 >
                   <motion.div variants={fadeUp}>
                     <span className="text-sm text-gray-400">海拔高度</span>
-                    <p className="font-medium text-white">{bean.altitude}</p>
+                    <p className="font-medium text-white">{item.altitude}</p>
                   </motion.div>
                   <motion.div variants={fadeUp}>
                     <span className="text-sm text-gray-400">咖啡品种</span>
-                    <p className="font-medium text-white">{bean.variety}</p>
+                    <p className="font-medium text-white">{item.variety}</p>
                   </motion.div>
                   <motion.div variants={fadeUp}>
                     <span className="text-sm text-gray-400">产区</span>
-                    <p className="font-medium text-white">{bean.origin}</p>
+                    <p className="font-medium text-white">{item.origin}</p>
                   </motion.div>
                   <motion.div variants={fadeUp}>
                     <span className="text-sm text-gray-400">处理方式</span>
                     <p className="font-medium text-white">
-                      {bean.treatment || "水洗处理"}
+                      {item.treatment || "水洗处理"}
                     </p>
                   </motion.div>
                 </motion.div>
 
-                {(bean.specification || bean.package || bean.additives) && (
+                {(item.specification || item.package || item.additives) && (
                   <motion.div
                     variants={containerStagger}
                     className="grid grid-cols-1 gap-3 p-4 bg-black/30 backdrop-blur-sm rounded-lg border border-white/10"
                   >
-                    {bean.specification && (
+                    {item.specification && (
                       <motion.div
                         variants={fadeUp}
                         className="flex justify-between"
                       >
                         <span className="text-sm text-gray-400">规格</span>
                         <p className="font-medium text-white text-right">
-                          {bean.specification}
+                          {item.specification}
                         </p>
                       </motion.div>
                     )}
-                    {bean.package && (
+                    {item.package && (
                       <motion.div
                         variants={fadeUp}
                         className="flex justify-between"
                       >
                         <span className="text-sm text-gray-400">包装</span>
                         <p className="font-medium text-white text-right">
-                          {bean.package}
+                          {item.package}
                         </p>
                       </motion.div>
                     )}
-                    {bean.additives && (
+                    {item.additives && (
                       <motion.div
                         variants={fadeUp}
                         className="flex justify-between"
                       >
                         <span className="text-sm text-gray-400">添加物</span>
                         <p className="font-medium text-white text-right">
-                          {bean.additives}
+                          {item.additives}
                         </p>
                       </motion.div>
                     )}
@@ -210,11 +222,11 @@ export default function BeanDetailPage({
                       产品特色
                     </h3>
                     <ul className="text-sm text-amber-100 space-y-1">
-                      <li>• {bean.variety}品种，品质卓越</li>
-                      <li>• 生长于海拔 {bean.altitude} </li>
-                      <li>• 独特的 {bean.flavor} 风味层次</li>
+                      <li>• {item.variety}品种，品质卓越</li>
+                      <li>• 生长于海拔 {item.altitude} </li>
+                      <li>• 独特的 {item.flavor} 风味层次</li>
                       <li>• 新鲜烘焙，保证最佳风味</li>
-                      {bean.additives && <li>• {bean.additives}</li>}
+                      {item.additives && <li>• {item.additives}</li>}
                     </ul>
                   </div>
                 </motion.div>
@@ -232,10 +244,10 @@ export default function BeanDetailPage({
                     </div>
                   </motion.div>
 
-                  {bean.taobaoUrl && (
+                  {item.taobaoUrl && (
                     <motion.a
                       variants={fadeUp}
-                      href={bean.taobaoUrl}
+                      href={item.taobaoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="block w-full bg-gradient-to-r from-orange-500 to-red-500 text-white text-center py-4 rounded-lg font-bold text-lg hover:from-orange-600 hover:to-red-600 transition-all duration-300 transform hover:scale-105 shadow-lg backdrop-blur-sm"
@@ -301,7 +313,7 @@ export default function BeanDetailPage({
               </div>
 
               <motion.div
-                key={activeTab} // 切 tab 時重新播放淡入
+                key={activeTab}
                 variants={fadeIn}
                 initial="hidden"
                 animate="show"
@@ -309,25 +321,25 @@ export default function BeanDetailPage({
               >
                 {activeTab === "details" && (
                   <div className="prose max-w-none">
-                    <h3 className="text-lg font-medium mb-4 text-white">
-                      关于 {bean.name}
+                    <h3 className="text-lg font-medium mb-4 text:white">
+                      关于 {item.name}
                     </h3>
                     <p className="text-gray-300 mb-4">
-                      {bean.name} 来自世界著名的咖啡产区 {bean.origin}
-                      ，生长在海拔 {bean.altitude} 的优质环境中。 采用{" "}
-                      {bean.variety} 品种，经过精心挑选和
-                      {bean.treatment || "水洗"}处理，呈现出独特的 {bean.flavor}{" "}
+                      {item.name} 来自世界著名的咖啡产区 {item.origin}{" "}
+                      ，生长在海拔 {item.altitude}
+                      的优质环境中。 采用 {item.variety} 品种，经过精心挑选和
+                      {item.treatment || "水洗"}处理，呈现出独特的 {item.flavor}{" "}
                       风味特点。
                     </p>
 
                     <h4 className="font-medium mb-2 text-white">产品特色：</h4>
                     <ul className="list-disc list-inside text-gray-300 space-y-1 mb-4">
-                      <li>{bean.variety}品种，品质卓越</li>
-                      <li>生长于海拔 {bean.altitude}</li>
-                      <li>独特的 {bean.flavor} 风味层次</li>
+                      <li>{item.variety}品种，品质卓越</li>
+                      <li>生长于海拔 {item.altitude}</li>
+                      <li>独特的 {item.flavor} 风味层次</li>
                       <li>新鲜烘焙，保证最佳风味</li>
                       <li>严格品控，每一粒都精心挑选</li>
-                      {bean.additives && <li>{bean.additives}</li>}
+                      {item.additives && <li>{item.additives}</li>}
                     </ul>
 
                     <div className="mt-6 space-y-4">
@@ -335,43 +347,43 @@ export default function BeanDetailPage({
                         产品规格：
                       </h4>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {bean.specification && (
+                        {item.specification && (
                           <div className="bg-black/30 backdrop-blur-sm rounded-lg p-3 border border-white/10">
                             <span className="text-sm text-gray-400 block">
                               规格
                             </span>
                             <p className="font-medium text-white">
-                              {bean.specification}
+                              {item.specification}
                             </p>
                           </div>
                         )}
-                        {bean.package && (
+                        {item.package && (
                           <div className="bg-black/30 backdrop-blur-sm rounded-lg p-3 border border-white/10">
                             <span className="text-sm text-gray-400 block">
                               包装
                             </span>
                             <p className="font-medium text-white">
-                              {bean.package}
+                              {item.package}
                             </p>
                           </div>
                         )}
-                        {bean.treatment && (
+                        {item.treatment && (
                           <div className="bg-black/30 backdrop-blur-sm rounded-lg p-3 border border-white/10">
                             <span className="text-sm text-gray-400 block">
                               处理方式
                             </span>
                             <p className="font-medium text-white">
-                              {bean.treatment}
+                              {item.treatment}
                             </p>
                           </div>
                         )}
-                        {bean.additives && (
+                        {item.additives && (
                           <div className="bg-black/30 backdrop-blur-sm rounded-lg p-3 border border-white/10">
                             <span className="text-sm text-gray-400 block">
                               添加物
                             </span>
                             <p className="font-medium text-white">
-                              {bean.additives}
+                              {item.additives}
                             </p>
                           </div>
                         )}
@@ -382,7 +394,7 @@ export default function BeanDetailPage({
 
                 {activeTab === "brewing" && (
                   <div className="prose max-w-none">
-                    <h3 className="text-lg font-medium mb-4 text白">
+                    <h3 className="text-lg font-medium mb-4 text-white">
                       冲煮建议
                     </h3>
 
@@ -391,50 +403,50 @@ export default function BeanDetailPage({
                         推荐参数
                       </h4>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-                        {bean.dosage && (
+                        {item.dosage && (
                           <div>
                             <span className="text-amber-300 block">用量</span>
                             <p className="text-amber-100 font-medium">
-                              {bean.dosage}
+                              {item.dosage}
                             </p>
                           </div>
                         )}
-                        {bean.temprecommendations && (
+                        {item.temprecommendations && (
                           <div>
                             <span className="text-amber-300 block">水温</span>
                             <p className="text-amber-100 font-medium">
-                              {bean.temprecommendations}
+                              {item.temprecommendations}
                             </p>
                           </div>
                         )}
-                        {bean.gouacheratio && (
+                        {item.gouacheratio && (
                           <div>
                             <span className="text-amber-300 block">粉水比</span>
                             <p className="text-amber-100 font-medium">
-                              {bean.gouacheratio}
+                              {item.gouacheratio}
                             </p>
                           </div>
                         )}
-                        {bean.extractiontime && (
+                        {item.extractiontime && (
                           <div>
                             <span className="text-amber-300 block">
                               萃取时间
                             </span>
                             <p className="text-amber-100 font-medium">
-                              {bean.extractiontime}
+                              {item.extractiontime}
                             </p>
                           </div>
                         )}
                       </div>
                     </div>
 
-                    {bean.brewingmethod && (
+                    {item.brewingmethod && (
                       <div className="mb-6">
                         <h4 className="font-medium text-white mb-3">
                           推荐冲煮方法
                         </h4>
-                        <div className="bg黑/30 backdrop-blur-sm rounded-lg p-4 border border白/10">
-                          <p className="text-gray-300">{bean.brewingmethod}</p>
+                        <div className="bg-black/30 backdrop-blur-sm rounded-lg p-4 border border-white/10">
+                          <p className="text-gray-300">{item.brewingmethod}</p>
                         </div>
                       </div>
                     )}
