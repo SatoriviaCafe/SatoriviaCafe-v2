@@ -59,7 +59,7 @@ export default function Navbar() {
     },
     {
       name: "滤挂咖啡（敬请期待）",
-      href: "/products/drip-coffee",
+      href: "/products/drip",
       description: "方便的滤挂式咖啡，随时享受香醇",
       image: "/logo.png",
     },

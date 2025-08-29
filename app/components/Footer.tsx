@@ -16,7 +16,7 @@ const fadeUp: Variants = {
 };
 
 const containerStagger: Variants = {
-  hidden: { opacity: 1 }, // 保持佈局不跳動
+  hidden: { opacity: 1 },
   show: {
     opacity: 1,
     transition: { staggerChildren: 0.12, delayChildren: 0.08 },
@@ -28,20 +28,16 @@ const footerNav = {
     { title: "单品咖啡豆（敬請期待）", href: "/products/beans" },
     { title: "滤挂咖啡（敬請期待）", href: "/products/drip" },
   ],
-  about: [
-    { title: "品牌故事", href: "#about" },
-    { title: "烘焙理念（敬請期待）", href: "#roast" },
-  ],
+  about: [{ title: "品牌故事", href: "#about" }],
   support: [
-    { title: "配送资讯（敬請期待）", href: "/support/shipping" },
-    { title: "退换货政策（敬請期待）", href: "/support/returns" },
+    { title: "配送资讯", href: "/support/shipping" },
+    { title: "退换货政策", href: "/support/returns" },
   ],
 };
 
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-black to-slate-800 text-gray-300">
-      {/* 星空背景（保留你的星點，僅加淡入） */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 0.3 }}
@@ -83,7 +79,6 @@ export default function Footer() {
 
       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
 
-      {/* 整體容器：僅加進場與 stagger，不變動內容 */}
       <motion.div
         variants={containerStagger}
         initial="hidden"
@@ -92,7 +87,6 @@ export default function Footer() {
         className="relative px-6 pb-10 pt-20 text-white md:px-20"
       >
         <div className="mx-auto grid max-w-7xl items-start gap-12 md:grid-cols-5">
-          {/* 左側品牌介紹（原樣，僅套動畫） */}
           <motion.div variants={fadeUp} className="md:col-span-2">
             <div className="mb-6 flex items-center gap-3">
               <Link href="/">
@@ -127,7 +121,6 @@ export default function Footer() {
             </div>
           </motion.div>
 
-          {/* 導航三欄（原樣，僅套動畫） */}
           <div className="md:col-span-3 grid grid-cols-3 gap-8">
             {[
               { heading: "产品系列", items: footerNav.products },
@@ -195,7 +188,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* 社群連結區（原樣，僅加容器與每個 item 的動畫） */}
         <motion.div
           variants={containerStagger}
           className="mx-auto mt-16 max-w-7xl"
@@ -276,7 +268,6 @@ export default function Footer() {
           </div>
         </motion.div>
 
-        {/* 版權區（原樣，僅套動畫） */}
         <motion.div variants={fadeUp} className="mx-auto mt-16 max-w-7xl">
           <div className="mb-8 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
           <div className="flex flex-col items-center justify-between gap-6 text-sm text-gray-400 md:flex-row">
