@@ -67,7 +67,7 @@ export const products = [
   },
   {
     productsid: 'drip',
-    series: 'mandheling',
+    series: 'drip',
     id: 'mandheling',
     name: ' INTUI CAFE｜黄金曼特宁（苏门答腊 · PWN）挂耳咖啡',
     flavor: '黄油 · 焦糖 · 檀木 · 巧克力（隐约烟熏甜感）',
@@ -89,7 +89,7 @@ export const products = [
   },
   {
     productsid: 'drip',
-    series: 'moonlight',
+    series: 'drip',
     id: 'moonlight',
     name: ' INTUI CAFE｜花月夜 · 滤挂式咖啡（Moonlight Drip Bag）',
     flavor: '菠萝 · 芒果 · 荔枝 · 哈密瓜 · 茉莉',
@@ -111,7 +111,7 @@ export const products = [
   },
   {
     productsid: 'drip',
-    series: 'baha',
+    series: 'drip',
     id: 'baha',
     name: ' INTUI CAFE｜巴哈 · 加勒比海 F1 挂耳式咖啡',
     flavor: '葡萄 · 莓果 · 白兰地（橡木与酒香感）',
