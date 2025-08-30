@@ -92,7 +92,7 @@ export default function BeanDetailPage({
               <motion.div variants={leftSlide} className="space-y-4">
                 <motion.div
                   variants={fadeUp}
-                  className="aspect-square bg-gray-100 rounded-lg overflow-hidden"
+                  className="aspect-square rounded-lg overflow-hidden"
                 >
                   <Image
                     src={item.image}
