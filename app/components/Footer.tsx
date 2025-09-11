@@ -25,8 +25,10 @@ const containerStagger: Variants = {
 
 const footerNav = {
   products: [
-    { title: "单品咖啡豆（敬請期待）", href: "/products/beans" },
-    { title: "滤挂咖啡（敬請期待）", href: "/products/drip" },
+    { title: "单品咖啡豆（敬請期待）", href: "/" },
+    { title: "滤挂咖啡（敬請期待）", href: "/" },
+    //{ title: "单品咖啡豆（敬請期待）", href: "/products/beans" },
+    //{ title: "滤挂咖啡（敬請期待）", href: "/products/drip" },
   ],
   about: [{ title: "品牌故事", href: "#about" }],
   support: [
