@@ -53,13 +53,15 @@ export default function Navbar() {
   const productCategories = [
     {
       name: "单品咖啡豆（敬请期待）",
-      href: "/products/beans",
+      href: "/",
+      //href: "/products/beans",
       description: "精选优质咖啡豆，来自世界各地",
       image: "/logo.png",
     },
     {
       name: "滤挂咖啡（敬请期待）",
-      href: "/products/drip",
+      href: "/",
+      //href: "/products/drip",
       description: "方便的滤挂式咖啡，随时享受香醇",
       image: "/logo.png",
     },
@@ -241,7 +243,8 @@ export default function Navbar() {
 
                                 <div className="mt-4 pt-4 border-t border-white/10">
                                   <a
-                                    href="/products"
+                                    href="/"
+                                    //href="/products"
                                     className="flex items-center justify-center space-x-2 w-full py-2 px-4 bg-amber-600/20 hover:bg-amber-600/30 rounded-md transition-colors text-amber-400 hover:text-amber-300"
                                   >
                                     <span className="text-sm font-medium">
