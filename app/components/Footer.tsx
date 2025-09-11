@@ -106,7 +106,7 @@ export default function Footer() {
             <div className="mb-6 space-y-3">
               <div className="flex items-center gap-3 text-sm text-gray-400 hover:text-white transition-colors">
                 <MapPin className="h-4 w-4 text-amber-400" />
-                深圳市南山区粤海街道海珠社区海德二道288号茂业时代广场15G-6
+                深圳市鹏城心维贸易有限公司（南山区粤海街道海珠社区海德二道288号茂业时代广场15G-6）
               </div>
               <div className="flex items-center gap-3 text-sm text-gray-400 hover:text-white transition-colors">
                 <Mail className="h-4 w-4 text-amber-400" />
